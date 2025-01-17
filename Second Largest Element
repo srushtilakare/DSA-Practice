@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n,i,large,secondLarge;
+	cout<<"Enter Number of Elements : ";
+	cin>>n;
+	int arr[n];
+	cout<<"Enter Array Elments : ";
+	for(i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+	large=secondLarge=arr[0];
+	for(i=0;i<n;i++)
+	{
+		if(arr[i]>large)
+		{
+			secondLarge=large;
+			large=arr[i];		  
+		}
+		else if(arr[i]>secondLarge && arr[i]!=large)
+		{
+			secondLarge=arr[i];
+		}
+	}
+	
+ 	if(secondLarge==large)
+ 	{
+ 		cout<<"All Elements are Same!";
+	 }
+	 else
+	 {
+	 	cout<<"Second Largest Element is "<<secondLarge;
+	 }
+	
+	return 0;
+}
