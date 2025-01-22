@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n, key, i, flag = -1;
+
+    cout << "Enter Total Number of Elements: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter Array Elements: ";
+    for (i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    cout << "Enter the Element to be Searched: ";
+    cin >> key;
+
+    // Perform linear search with early exit
+    for (i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            flag = i; // Store the index of the key
+            break;    // Exit the loop early once the key is found
+        }
+    }
+
+    // Output the result
+    if (flag != -1) {
+        cout << "Element found at index: " << flag << endl;
+    } else {
+        cout << "Element not found in the array." << endl;
+    }
+
+    return 0;
+}
