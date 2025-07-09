@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+class node {
+public:
+    int data;
+    node* left;
+    node* right;
+
+    node(int d) {
+        this->data = d;
+        this->left = NULL;
+        this->right = NULL;
+    }
+};
+
+// Recursive function to build tree
+node* buildTree() {
+    int data;
+    cout << "\nEnter Data (-1 for NULL): ";
+    cin >> data;
+
+    if (data == -1) {
+        return NULL;
+    }
+
+    node* root = new node(data);
+
+    cout << "\nEnter data to insert in left of " << data << " : ";
+    root->left = buildTree();
+
+    cout << "\nEnter data to insert in right of " << data << " : ";
+    root->right = buildTree();
+
+    return root;
+}
+
+int main() {
+    node* root = NULL;
+
+    root = buildTree();
+
+    return 0;
+}
