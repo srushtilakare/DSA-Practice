@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector> // dynamically store the input
+#include<algorithm> // sorting function (inbuilt)
+using namespace std;
+
+string lCP(vector<string> &strs) {
+	if(strs.empty())
+	{
+		return " ";
+	}
+	
+	//first sort the strings in dictionary order (lexicographically)
+	sort(strs.begin(), strs.end());
+	
+	//after sorting compare 1st and last char by char
+	string first=strs[0], last=strs.back();
+	int i;
+	
+	while(i<first.size() && first[i]==last[i]) i++;
+	
+	return first.substr(0, i);
+}
+
+int main() {
+	vector<string> words = {"flower", "flow", "flight"};
+	cout<<"Longest Common Prefix..."<<lCP(words);
+	
+	return 0;
+ 
+}
