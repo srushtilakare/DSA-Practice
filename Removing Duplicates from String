@@ -1,0 +1,26 @@
+#include<iostream>
+#include<unordered_set>
+#include<string>
+using namespace std;
+
+string removeDuplicates(string s) {
+	unordered_set<char> seen; //to track charcters that has been already encountered
+	string result = " ";
+	for(char c : s)
+	{
+		if(!seen.count(c)) { //if already exists then ignored
+			seen.insert(c); //set takes only unique elements
+			result += c;
+		}
+	}
+	return result;
+}
+
+int main() {
+	string s;
+	cin>>s;
+	
+	cout<<"String after removing duplicates : "<<removeDuplicates(s);
+	
+	return 0;
+}
