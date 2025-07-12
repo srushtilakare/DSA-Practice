@@ -1,0 +1,64 @@
+#include<iostream>
+using namespace std;
+
+class node {
+	public:		
+		int data;
+		node* left;
+		node* right;
+		
+		node(int d) {
+			this->data=d;
+			this->left=NULL;
+			this->right=NULL;
+		}
+};
+
+//BST Insert Function
+node* insertIntoBST(node* root, int data){
+	//base case
+	if(root == NULL){
+		return new node(data);
+	}
+	
+	if(data < root->data){
+		root->left=insertIntoBST(root->left, data);
+	}
+	else {
+		root->right=insertIntoBST(root->right, data);
+	}
+	
+	return root;
+	
+}
+
+void buildTree(node* &root) {
+	int data;
+	cout<<"Enter Data: ";
+	cin>>data;
+	
+	while(data!=-1){
+		root = insertIntoBST(root, data);
+		cout << "Enter data to insert into BST (-1 to stop): ";
+        cin >> data;
+	}
+}
+
+void inorder(node* root){
+	if(root == NULL) return;
+	
+	inorder(root->left);
+	cout<<root->data;
+	inorder(root->right);
+}
+
+int main() {
+    node* root = NULL;
+
+    buildTree(root);
+
+    cout << "\nInorder Traversal of BST: ";
+    inorder(root);
+
+    return 0;
+}
