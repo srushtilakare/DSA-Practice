@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+int sum(int **a, int n) {
+    int total = 0;
+    for(int i = 0; i < n; i++) {
+        total += *(*a + i);  // dereferencing to get value
+    }
+    return total;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int **a = new int*;     // allocate memory for pointer to pointer
+    *a = new int[n];        // allocate memory for actual int array
+
+    for(int i = 0; i < n; i++) {
+        cin >> (*a)[i];     // input values
+    }
+
+    int result = sum(a, n);
+    cout << "Sum = " << result << endl;
+
+    delete[] *a;  // delete int array
+    delete a;     // delete pointer
+
+    return 0;
+}
