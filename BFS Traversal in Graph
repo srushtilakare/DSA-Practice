@@ -1,0 +1,57 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+using namespace std;
+
+void bfs(int startNode, vector<vector<int>> &adjList, int n) {
+	vector<bool> visited(n, false); //visited array
+	queue<int> q;
+	
+	visited[startNode]=true;
+	q.push(startNode);
+	
+	cout<<"BFS traversal starting from node : "<<startNode<<endl;
+	
+	while(!q.empty())
+	{
+		int current=q.front();
+		q.pop(); //for bfs output
+		cout<<current<<" ";
+		
+		//visit all its neighbours (adj elements)
+		for(int adj: adjList[current]) {
+			if(!visited[adj]) {
+				visited[adj]=true;
+				q.push(adj);
+			}
+		}
+	}
+	cout<<endl;
+}
+
+int main() {
+	int n,m;
+	cout<<"Enter no. of Nodes: ";
+	cin>>n;
+	cout<<"Enter no. of edges: ";
+	cin>>m;
+	
+	vector<vector<int>> adjList(n);
+	
+	cout<<"Enter Edges (u, v) for undirected graph ";
+	for(int i=0;i<m;i++) {
+		int u, v;
+		cin>>u>>v;
+		
+		adjList[u].push_back(v);
+		adjList[v].push_back(u); //for undirected graph only
+	}
+	
+	int start;
+	cout<<"\nEnter Starting Node : ";
+	cin>>start;
+	
+	bfs(start, adjList, n);
+	
+	return 0;
+}
